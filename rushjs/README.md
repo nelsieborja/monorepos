@@ -27,7 +27,7 @@
    }
    ```
 
-2. Create `hello` app via CRA
+2. Create `hello` app via [CRA](https://github.com/facebook/create-react-app)
 
    ```shell
    # create the `apps` folder and navigate to it
@@ -52,13 +52,14 @@
    // rush.json
    "projects": [
      {
-       "packageName": `hello`,
+       "packageName": "hello",
        "projectFolder": "apps/hello"
      }
    ]
    ```
 
 3. Create `@shared/ui` package via [tsdx](https://github.com/formium/tsdx)
+
    This package will provide a component into `hello` app.
 
    ```shell

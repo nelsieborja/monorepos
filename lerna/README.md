@@ -29,7 +29,7 @@
    }
    ```
 
-3. Create the apps (via CRA) and shared libs (via tsdx)
+3. Create the apps (via [CRA](https://github.com/facebook/create-react-app)) and shared libs (via [tsdx](https://github.com/formium/tsdx))
 
    ```shell
    # navigate to `packages` folder
