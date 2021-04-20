@@ -1,1 +1,1 @@
-export const getPkgName = () => '@shared/utils';
+export const getPkgName = () => 'yo @shared/utils';
