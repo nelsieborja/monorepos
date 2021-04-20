@@ -56,7 +56,8 @@
    ```
 
 5. Use the shared libs in the apps
-   This is done by just updating the `package.json` files as below:
+
+   This is done by just adding the packages to `package.json` files as below:
 
    ```json
    // packages/hello/package.json
