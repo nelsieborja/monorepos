@@ -91,10 +91,31 @@ $ rush add -p @shared/ui # `rush add` tells Rush to reference a local one
 $ rush build
 ```
 
-5. Deployment
+5. Deployment via Netlify
 
 ```shell
 # init a new scenario config file (/common/config/rush/deploy.json)
 # (sample content) "deploymentProjectNames": ["demo"],
 $ rush init-deploy -p demo
 ```
+
+Then commit to GitHub and deploy to Netlify using the below settings:
+
+- build command
+
+```shell
+npm i -g @microsoft/rush && rush install && rush build && rush deploy --overwrite -p demo && cd common/deploy/apps/demo && rushx build
+```
+
+- publish directory
+
+```shell
+rushjs/common/deploy/apps/demo/build
+```
+
+---
+
+## Refs
+
+[YouTube tutorial](https://www.youtube.com/watch?v=7FWG3tBTnFM&ab_channel=LeighHalliday)
+[RushJS deploying projects](https://rushjs.io/pages/maintainer/deploying/)
