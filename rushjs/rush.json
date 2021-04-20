@@ -390,12 +390,20 @@
    */
   "projects": [
     {
-      "packageName": "demo",
-      "projectFolder": "apps/demo"
+      "packageName": "hello",
+      "projectFolder": "apps/hello"
+    },
+    {
+      "packageName": "world",
+      "projectFolder": "apps/world"
     },
     {
       "packageName": "@shared/ui",
       "projectFolder": "libs/ui"
+    },
+    {
+      "packageName": "@shared/utils",
+      "projectFolder": "libs/utils"
     }
     // {
     //   /**

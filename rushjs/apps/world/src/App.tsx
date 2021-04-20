@@ -1,10 +1,10 @@
-import { SharedUi } from "@shared/ui";
+import { Title } from "@shared/ui";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <SharedUi />
+      <Title label="World App" />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 ## Steps
 
 1. Install the dependencies
+
    NOTE: `pnpm` had issues with installing dependencies, hence `npm` is used instead.
 
 ```shell
@@ -23,18 +24,18 @@ $ rush init
 }
 ```
 
-2. Create "demo" React app via CRA
+2. Create "hello" React app via CRA
 
 ```shell
 # create the `apps` folder and navigate to it
 $ mkdir apps && cd apps
 # create the app
-$ npx create-react-app demo
+$ npx create-react-app hello --template typescript
 # add the app to "projects" property in `rush.json` file
 "projects": [
 {
-    "packageName": "demo",
-    "projectFolder": "apps/demo"
+    "packageName": "hello",
+    "projectFolder": "apps/hello"
 }
 ]
 # tell Rush about the package update
@@ -42,14 +43,14 @@ $ npx create-react-app demo
 # Rush will also install different packages that it needs
 $ rush update
 # run the app
-$ cd demo # navigate to the `app` folder
+$ cd hello # navigate to the `app` folder
 # start it
 # `rushx` was installed globally along with Rush; analogous to `npm run`
 $ rushx start
 ```
 
-3. Create "ui" package via [tsdx](https://github.com/formium/tsdx)
-   This package will provide a component into "demo" app.
+3. Create `@shared/ui` package via [tsdx](https://github.com/formium/tsdx)
+   This package will provide a component into "hello" app.
 
 ```shell
 # go back to root folder
@@ -80,42 +81,49 @@ $ rush update --purge
 $ cd ui && rushx start
 ```
 
-4. Import and use `@shared/ui` in "demo" app
+4. Import and use `@shared/ui` in "hello" app
 
 ```shell
-# navigate to "demo" app
-$ cd app/demo
+# navigate to "hello" app
+$ cd app/hello
 # add `@shared/ui` to the app
 $ rush add -p @shared/ui # `rush add` tells Rush to reference a local one
 # run build as suggested in the prompt
 $ rush build
 ```
 
+In case this is not successful, delete `config/rush/npm-shrinkwrap.json` file and run `rush update --purge`
+
 5. Deployment via Netlify
 
 ```shell
 # init a new scenario config file (/common/config/rush/deploy.json)
-# (sample content) "deploymentProjectNames": ["demo"],
-$ rush init-deploy -p demo
+# (sample content) "deploymentProjectNames": ["hello"],
+$ rush init-deploy -p hello
 ```
 
 Then commit to GitHub and deploy to Netlify using the below settings:
 
 - build command
 
-```shell
-npm i -g @microsoft/rush && rush install && rush build && rush deploy --overwrite -p demo && cd common/deploy/apps/demo && rushx build
-```
+  ```shell
+  npm i -g @microsoft/rush && rush install && rush build
+  && rush deploy --overwrite -p hello
+  && cd common/deploy/apps/hello && rushx build
+  ```
+
+  Or use Netlify plugin to split this command. Check `netlify` folder and `netlify.toml` file for reference.
 
 - publish directory
 
-```shell
-rushjs/common/deploy/apps/demo/build
-```
+  ```shell
+  common/deploy/apps/hello/build
+  ```
 
 ---
 
 ## Refs
 
-[YouTube tutorial](https://www.youtube.com/watch?v=7FWG3tBTnFM&ab_channel=LeighHalliday)
-[RushJS deploying projects](https://rushjs.io/pages/maintainer/deploying/)
+- [YouTube tutorial](https://www.youtube.com/watch?v=7FWG3tBTnFM&ab_channel=LeighHalliday)
+- [RushJS: deploying projects](https://rushjs.io/pages/maintainer/deploying/)
+- [Netlify: creating build plugins](https://docs.netlify.com/configure-builds/build-plugins/create-plugins/)
