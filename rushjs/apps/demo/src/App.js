@@ -1,10 +1,10 @@
-import { Thing } from "@shared/ui";
+import { SharedUi } from "@shared/ui";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Thing />
+      <SharedUi />
     </div>
   );
 }
