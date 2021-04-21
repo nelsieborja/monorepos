@@ -1,0 +1,261 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "defaultProject": "hello",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    }
+  },
+  "projects": {
+    "hello": {
+      "root": "apps/hello",
+      "sourceRoot": "apps/hello/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/hello",
+            "index": "apps/hello/src/index.html",
+            "main": "apps/hello/src/main.tsx",
+            "polyfills": "apps/hello/src/polyfills.ts",
+            "tsConfig": "apps/hello/tsconfig.app.json",
+            "assets": ["apps/hello/src/favicon.ico", "apps/hello/src/assets"],
+            "styles": ["apps/hello/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/hello/src/environments/environment.ts",
+                  "with": "apps/hello/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "hello:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "hello:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/hello/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/hello"],
+          "options": {
+            "jestConfig": "apps/hello/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "hello-e2e": {
+      "root": "apps/hello-e2e",
+      "sourceRoot": "apps/hello-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/hello-e2e/cypress.json",
+            "tsConfig": "apps/hello-e2e/tsconfig.e2e.json",
+            "devServerTarget": "hello:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "hello:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/hello-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "ui": {
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui"],
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "utils": {
+      "root": "libs/utils",
+      "sourceRoot": "libs/utils/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/utils/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils"],
+          "options": {
+            "jestConfig": "libs/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "world": {
+      "root": "apps/world",
+      "sourceRoot": "apps/world/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/world",
+            "index": "apps/world/src/index.html",
+            "main": "apps/world/src/main.tsx",
+            "polyfills": "apps/world/src/polyfills.ts",
+            "tsConfig": "apps/world/tsconfig.app.json",
+            "assets": ["apps/world/src/favicon.ico", "apps/world/src/assets"],
+            "styles": ["apps/world/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/world/src/environments/environment.ts",
+                  "with": "apps/world/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "world:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "world:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/world/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/world"],
+          "options": {
+            "jestConfig": "apps/world/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "world-e2e": {
+      "root": "apps/world-e2e",
+      "sourceRoot": "apps/world-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/world-e2e/cypress.json",
+            "tsConfig": "apps/world-e2e/tsconfig.e2e.json",
+            "devServerTarget": "world:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "world:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/world-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}

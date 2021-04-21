@@ -147,6 +147,17 @@
 
 ---
 
+## Obtain build duration
+
+```shell
+# initial build
+$ rush update --purge && rush build
+# after file change
+$ rush build
+```
+
+---
+
 ## Refs
 
 - [YouTube tutorial](https://www.youtube.com/watch?v=7FWG3tBTnFM&ab_channel=LeighHalliday)

@@ -112,6 +112,17 @@
 
 ---
 
+## Obtain build duration
+
+```shell
+# initial build
+$ yarn && yarn build
+# after file change
+$ yarn build
+```
+
+---
+
 ## Refs
 
 - [YouTube tutorial](https://youtu.be/p6qoJ4apCjA)
