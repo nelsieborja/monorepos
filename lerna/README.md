@@ -1,6 +1,6 @@
 # [Lerna](https://github.com/lerna/lerna) ft. Yarn Workspaces [![Netlify Status](https://api.netlify.com/api/v1/badges/300bb4a0-5111-4b66-8e13-1fca4199f466/deploy-status)](https://app.netlify.com/sites/monorepo-lerna-deploy/deploys)
 
-## Steps
+## Setup
 
 1. Initialize Lerna monorepo
 
@@ -102,7 +102,7 @@
    - build command: `yarn && yarn build`
    - publish directory: `packages/hello/build`
 
-   Make sure to add the below build command in root `package.json` file:
+   ⚠️ Make sure to add the below build command in root `package.json` file:
 
    ```json
    "scripts": {

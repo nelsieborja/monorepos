@@ -1,6 +1,6 @@
 # [Rush](https://rushjs.io/) [![Netlify Status](https://api.netlify.com/api/v1/badges/c7ddfc40-a959-46fe-ad72-232609198e70/deploy-status)](https://app.netlify.com/sites/monorepo-rush-deploy/deploys)
 
-## Steps
+## Setup
 
 1. Initialize Rush monorepo
 
@@ -18,14 +18,12 @@
    $ pnpm --version
    ```
 
-   **[NOTE]** `pnpm` is the default (and recommended) package manager but I encountered issues while installing `CRA` and `tsdx` dependencies, so I had to switch to `npm` instead.
-
-   To do so, comment `pnpmVersion` and uncomment `npmVersion` in `rush.json` file, also make sure to set its correct version:
+   💡 `pnpm` is the default (and recommended) package manager, in case you want to use `yarn` or `npm` comment `pnpmVersion` and uncomment your choice of pm. Also, you may need to adjust the version:
 
    ```json
    // rush.json
    {
-     "npmVersion": "6.14.11"
+     "yarnVersion": "1.22.10"
    }
    ```
 
@@ -48,7 +46,7 @@
    $ rushx start # `rushx` is analogous to `npm run`
    ```
 
-   **[NOTE]** Before running the update, make sure to add the app to "projects" in `rush.json` file:
+   ⚠️ Before running the update, make sure to add the app to "projects" in `rush.json` file:
 
    ```json
    // rush.json
@@ -83,7 +81,7 @@
    $ cd ui && rushx start
    ```
 
-   **[NOTE]** Before running the update, make sure to add this package to "projects" in `rush.json` file:
+   ⚠️ Before running the update, make sure to add this package to "projects" in `rush.json` file:
 
    ```json
    // rush.json
@@ -116,7 +114,7 @@
    $ rush build
    ```
 
-   In case this is not successful, delete `config/rush/npm-shrinkwrap.json` file then run `rush update --purge`
+   💡 In case this is not successful, delete `config/rush/npm-shrinkwrap.json` file then run `rush update --purge`
 
 5. Rush deployment via Netlify
 
@@ -137,7 +135,7 @@
      && cd common/deploy/apps/hello && rushx build
      ```
 
-     Or use Netlify plugin to split this command. Check `netlify` folder and `netlify.toml` file for reference.
+     💡 Or use Netlify plugin to split this command. Check `netlify` folder and `netlify.toml` file for reference.
 
    - publish directory
 
