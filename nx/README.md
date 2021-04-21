@@ -21,9 +21,8 @@
 
 ```shell
 # initial build
+# `--skip-nx-cache` flag to make sure cache is skip for initial build
 $ yarn nx affected:build --all --parallel --skip-nx-cache
 # after file change
-
+$ yarn nx affected:build --all --parallel
 ```
-
-- `--skip-nx-cache` - making sure cache is skip for initial build
