@@ -1,24 +1,26 @@
+# [Rush](https://rushjs.io/) [![Netlify Status](https://api.netlify.com/api/v1/badges/c7ddfc40-a959-46fe-ad72-232609198e70/deploy-status)](https://app.netlify.com/sites/monorepo-rush-deploy/deploys)
+
 ## Steps
 
-1. Install the dependencies
-
-   **[NOTE]** `pnpm` had issues with installing dependencies, hence `npm` is used instead.
+1. Initialize Rush monorepo
 
    ```shell
    # install Rush
    $ npm install -g @microsoft/rush
 
-   # install pnpm as package manager
-   # $ npm i -g pnpm
+   # install `pnpm` as package manager
+   $ npm i -g pnpm
 
-   # initialize Rush monorepo inside `rushjs` folder
+   # initialize Rush monorepo inside `rush` folder
    $ rush init
 
-   # check pnpm version and match to "pnpmVersion" property in `rush.json` file
-   # $ pnpm --version
+   # check `pnpm` version and match to "pnpmVersion" in `rush.json` file
+   $ pnpm --version
    ```
 
-   Uncomment the below line in `rush.json` file to set `npm` as your package manager, also make sure to set its correct version:
+   **[NOTE]** `pnpm` is the default (and recommended) package manager but I encountered issues while installing `CRA` and `tsdx` dependencies, so I had to switch to `npm` instead.
+
+   To do so, comment `pnpmVersion` and uncomment `npmVersion` in `rush.json` file, also make sure to set its correct version:
 
    ```json
    // rush.json
@@ -74,9 +76,10 @@
    $ cd ../../ # navigate back to root folder
    # tell Rush to wipe everything out and reinstall all of the deps then link them together
    # so that the referencing of shared components would take place
+   # `-p/--purge` flag to run `rush purge` first
    $ rush update --purge
 
-   # start the created package to watch for file updates,
+   # start the created package to watch for file updates
    $ cd ui && rushx start
    ```
 
@@ -93,7 +96,8 @@
 
    // Also, match the package name `@shared/ui` to `libs/ui/package.json` file
     {
-      "name": "@shared/ui", // was: "name": "ui",
+      // "name": "ui",
+      "name": "@shared/ui",
     }
    ```
 
@@ -102,19 +106,24 @@
    ```shell
    # navigate to `hello` app
    $ cd app/hello
+
    # add `@shared/ui` to the app
-   $ rush add -p @shared/ui # `rush add` tells Rush to reference a local one
+   # `rush add` tells Rush to reference a local one
+   # `-p` flag to indicate the package
+   $ rush add -p @shared/ui
+
    # run build as suggested in the prompt
    $ rush build
    ```
 
-   In case this is not successful, delete `config/rush/npm-shrinkwrap.json` file and run `rush update --purge`
+   In case this is not successful, delete `config/rush/npm-shrinkwrap.json` file then run `rush update --purge`
 
-5. Deployment via Netlify
+5. Rush deployment via Netlify
 
    ```shell
    # init a new scenario config file (/common/config/rush/deploy.json)
-   # (sample content) "deploymentProjectNames": [`hello`],
+   # (sample content) "deploymentProjectNames": ["hello"]
+   # `-p/--package` flag to indicate the target package
    $ rush init-deploy -p hello
    ```
 
@@ -136,12 +145,12 @@
      common/deploy/apps/hello/build
      ```
 
-6. (Optional) Create the `world` app and `@shared/utils` lib by following 3-4 steps.
+6. (Optional) Create the `world` app and `@shared/utils` lib by following 2-3 steps.
 
 ---
 
 ## Refs
 
 - [YouTube tutorial](https://www.youtube.com/watch?v=7FWG3tBTnFM&ab_channel=LeighHalliday)
-- [RushJS: deploying projects](https://rushjs.io/pages/maintainer/deploying/)
+- [Rush: deploying projects](https://rush.io/pages/maintainer/deploying/)
 - [Netlify: creating build plugins](https://docs.netlify.com/configure-builds/build-plugins/create-plugins/)

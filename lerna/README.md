@@ -1,15 +1,16 @@
+# [Lerna](https://github.com/lerna/lerna) ft. Yarn Workspaces
+
 ## Steps
 
-1. Install the dependencies
+1. Initialize Lerna monorepo
 
    ```shell
-   # initialize Lerna workspace
    $ npx lerna init
    ```
 
-2. Yarn workspaces setup
+2. Yarn Workspaces setup
 
-   Using Yarn workspaces, common packages will be hoisted up to the root directory instead of duplicating them in the packages `node_modules` folders. To do so, do the following file update:
+   Using Yarn Workspaces with Lerna, the common packages will be hoisted up to the root directory instead of duplicating them in the packages `node_modules` folders. To do so, do the following file update:
 
    ```json
    // lerna.json
@@ -18,12 +19,14 @@
      "npmClient": "yarn",
      "useWorkspaces": true
    }
+
    // package.json
+   // this is the minimum setup!
    {
-     ...
+     "private": true,
      "workspaces": {
        "packages": [
-         "packages/**"
+         "packages/*"
        ]
      }
    }
@@ -38,6 +41,15 @@
    $ npx create-react-app world --template typescript  # world app
    $ npx tsdx create ui                                # ui lib
    $ npx tsdx create utils                             # utils lib
+
+   # start all the packages
+   $ npx lerna run start
+   # start specific package
+   $ npx lerna run --scope hello start
+   # or using `exec`
+   $ npx lerna exec --scope hello -- yarn start
+   # or use yarn workspaces
+   $ yarn workspace hello start
    ```
 
 4. (Optional) Rename the packages name in their `package.json` file accordingly:
@@ -45,12 +57,13 @@
    ```json
    // packages/ui/package.json
    {
-     ...
+     // "name": "ui",
      "name": "@shared/ui",
    }
+
    // packages/utils/package.json
    {
-     ...
+     // "name": "utils",
      "name": "@shared/utils",
    }
    ```
@@ -69,6 +82,7 @@
        "@shared/utils": "0.1.0"
      },
    }
+
    // packages/world/package.json
    {
      ...
@@ -80,3 +94,9 @@
    ```
 
    Then you can start importing the libs within the apps.
+
+---
+
+## Refs
+
+- [YouTube tutorial](https://youtu.be/p6qoJ4apCjA)
