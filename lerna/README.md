@@ -43,9 +43,9 @@
    $ npx tsdx create utils                             # utils lib
 
    # start all the packages
-   $ npx lerna run start
+   $ yarn lerna run start
    # start specific package
-   $ npx lerna run --scope hello start
+   $ yarn lerna run --scope hello start
    # or using `exec`
    $ npx lerna exec --scope hello -- yarn start
    # or use yarn workspaces
@@ -70,7 +70,7 @@
 
 5. Use the shared libs in the apps
 
-   This is done by just adding the packages to `package.json` files as below:
+   Add the packages to `package.json` files as below:
 
    ```json
    // packages/hello/package.json
@@ -93,32 +93,21 @@
    }
    ```
 
-   Then you can start importing the libs within the apps.
+   Make sure to run `lerna bootstrap` (it will [use Yarn as configured](https://github.com/lerna/lerna/tree/main/commands/bootstrap#--use-workspaces) above) before using the shared libs within the apps. Lerna will have to install remaining deps then link any cross-dependencies.
 
 6. Lerna deployment via Netlify
 
-   Commit to GitHub and deploy to Netlify using the below settings:
+   Commit to GitHub and deploy (`hello` app only) to Netlify using the below settings:
 
-   - build command: `yarn && yarn build`
-   - publish directory: `packages/hello/build`
-
-   ⚠️ Make sure to add the below build command in root `package.json` file:
-
-   ```json
-   "scripts": {
-      "build": "lerna run --stream build"
-   }
-   ```
+   - Build command: `yarn && yarn lerna run --scope hello build --stream --include-dependencies`
+   - Publish directory: `packages/hello/build`
 
 ---
 
-## Obtain build duration
+## Obtain build-all execution time with:
 
 ```shell
-# initial build
-$ yarn && yarn build
-# after file change
-$ yarn build
+$ yarn lerna run build --stream
 ```
 
 ---

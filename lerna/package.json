@@ -9,8 +9,5 @@
     "packages": [
       "packages/*"
     ]
-  },
-  "scripts": {
-    "build": "lerna run --stream build"
   }
 }

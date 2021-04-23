@@ -125,35 +125,28 @@
    $ rush init-deploy -p hello
    ```
 
-   Then commit to GitHub and deploy to Netlify using the below settings:
+   Then commit to GitHub and deploy (`hello` app only) to Netlify using the below settings:
 
-   - build command
+   - Build command:
 
      ```shell
-     npm i -g @microsoft/rush && rush install && rush build
+     npm i -g @microsoft/rush && rush install && rush build -t hello
      && rush deploy --overwrite -p hello
      && cd common/deploy/apps/hello && rushx build
      ```
 
      💡 Or use Netlify plugin to split this command. Check `netlify` folder and `netlify.toml` file for reference.
 
-   - publish directory
-
-     ```shell
-     common/deploy/apps/hello/build
-     ```
+   - Publish directory: `common/deploy/apps/hello/build`
 
 6. (Optional) Create the `world` app and `@shared/utils` lib by following 2-3 steps.
 
 ---
 
-## Obtain build duration
+## Obtain build-all execution time with:
 
 ```shell
-# initial build
-$ rush update --purge && rush build
-# after file change
-$ rush build
+$ rush build -p max
 ```
 
 ---
