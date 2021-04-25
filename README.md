@@ -5,9 +5,9 @@
 - DX (Developer experience)
 - Build execution time
 
-The same set of packages (see below dependencies) were created for each tool, this setup was then used to obtain the results of the above criteria.
+The same set of packages (see below dependencies) were created for each tool, this setup was then used to obtain the result of the above criteria.
 
-![Test Image 1](dep-graph.png)
+![dependency graph](dep-graph.png)
 
 This dependency graph was created with _Nx_ `affected:dep-graph`.
 
@@ -15,13 +15,13 @@ This dependency graph was created with _Nx_ `affected:dep-graph`.
 
 ### DX
 
-- _Lerna_ - overall setup was easy. It provides features mainly for publishing npm packages, so when it comes to creating projects, you have to do yourself all the code setup. Sharing of code can easily be done in just 2 steps.
-- _Nx_ - has the most convenient and easiest setup. With the _Nx_ CLI, you can quickly scaffold new projects in a consistent and standardize fashion. Code sharing is done instantly, no extra step needed.
-- _Rush_ - not an easy one to get started with. You have to follow some steps as part of configuring things, otherwise you mess things up. Same as Lerna, features are mainly for publishing and managing npm package. Sharing of code requires extra steps and you might also face some issue.
+- _**Lerna**_ - overall setup was easy. It provides features mainly for publishing npm packages, so when it comes to creating projects, you have to do yourself all the code setup. Sharing of code can easily be done in just 2 steps.
+- _**Nx**_ - the most convenient and easiest to setup with. With the _Nx_ CLI, you can quickly scaffold new projects in a consistent and standardize fashion. Code sharing is done instantly, no extra step needed.
+- _**Rush**_ - not an easy one to get started with. You have to follow some steps as part of configuring things, otherwise you mess things up. Same as Lerna, features are mainly for publishing and managing npm package. Sharing of code requires extra steps and you might also face some issue.
 
 ### Build execution time
 
-TBA
+![dependency graph](build-execution-time.png)
 
 ## Setup guide
 
